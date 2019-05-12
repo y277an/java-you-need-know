@@ -8,4 +8,4 @@
 
 欢迎关注的博客或者微信公众号~
 
-![哎呀，如果我的名片丢了。微信搜索“全菜工程师小辉”，依然可以找到我](http://mseddl.gitee.io/photos/backend/jetbrain.jpg)
+![哎呀，如果我的名片丢了。微信搜索“全菜工程师小辉”，依然可以找到我](http://mseddl.gitee.io/photos/always/weixin-public.png)
