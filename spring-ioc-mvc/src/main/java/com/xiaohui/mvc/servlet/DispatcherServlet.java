@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class DispatcherServlet extends HttpServlet {
 
-    public static final String                       CONTEXT_CONFIG_LOCATION = "globalConfig";
+    private static final String                       CONTEXT_CONFIG_LOCATION = "globalConfig";
     private             List<Handler>                handlerMapping          = new ArrayList<>();
     private             Map<Handler, HandlerAdapter> adapterMapping          = new ConcurrentHashMap<>();
 
@@ -32,29 +32,26 @@ public class DispatcherServlet extends HttpServlet {
         // 创建ApplicationContext上下文,启动bean的解析  创建  注入等过程
         AnnotationBeanFactory context = new AnnotationBeanFactory(location);
 
-        // 请求解析
+        // 初始化上传文件解析器(或者是多部分请求解析器)
         initMultipartResolver(context);
-        // 多语言、国际化
+        // 初始化国际化解析器
         initLocaleResolver(context);
-        // 主题View层的
+        // 初始化主题View层的解析器
         initThemeResolver(context);
-
-        // 解析url和Method的关联关系
+        // 初始化处理器映射器(解析url和Method的关联关系)
         initHandlerMappings(context);
-        // 适配器（匹配的过程）
+        // 初始化适配器（匹配的过程）
         initHandlerAdapters(context);
-
-        // 异常解析
+        // 初始化异常解析器
         initHandlerExceptionResolvers(context);
-        // 视图转发（根据视图名字匹配到一个具体模板）
+        // 初始化请求到视图名解析器（根据视图名字匹配到一个具体模板）
         initRequestToViewNameTranslator(context);
-
-        // 解析模板中的内容（拿到服务器传过来的数据，生成HTML代码）
+        // 初始化视图解析器（解析模板中的内容：拿到服务器传过来的数据，生成HTML代码）
         initViewResolvers(context);
-
+        // 初始化重定向数据管理器
         initFlashMapManager(context);
 
-        System.out.println("GPSpring MVC is init.");
+        System.out.println("SpringMVC init finished");
     }
 
     private void initFlashMapManager(AnnotationBeanFactory context) {
