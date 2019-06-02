@@ -46,7 +46,7 @@ public class TestController {
     public List<InfoUser> getUserList() throws InterruptedException {
 
         long start = System.currentTimeMillis();
-        int thread_count = 100;
+        int thread_count = 1000;
         CountDownLatch countDownLatch = new CountDownLatch(thread_count);
         for (int i = 0; i < thread_count; i++) {
             new Thread(() -> {
@@ -94,7 +94,7 @@ public class TestController {
     public Map<String, InfoUser> getAllUser() throws InterruptedException {
 
         long start = System.currentTimeMillis();
-        int thread_count = 2000;
+        int thread_count = 200;
         CountDownLatch countDownLatch = new CountDownLatch(thread_count);
         for (int i = 0; i < thread_count; i++) {
             new Thread(() -> {
