@@ -23,11 +23,11 @@ public class RpcFactoryBean<T> implements FactoryBean<T> {
     public RpcFactoryBean(Class<T> rpcInterface) {
         this.rpcInterface = rpcInterface;
     }
-
+    // 返回的对象实例
     public T getObject() throws Exception {
         return (T) Proxy.newProxyInstance(rpcInterface.getClassLoader(), new Class[]{rpcInterface}, factory);
     }
-
+    // Bean的类型
     public Class<?> getObjectType() {
         return this.rpcInterface;
     }

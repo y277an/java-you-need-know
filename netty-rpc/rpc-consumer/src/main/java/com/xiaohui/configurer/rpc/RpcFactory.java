@@ -30,6 +30,7 @@ public class RpcFactory<T> implements InvocationHandler {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Request request = new Request();
         request.setClassName(method.getDeclaringClass().getName());
