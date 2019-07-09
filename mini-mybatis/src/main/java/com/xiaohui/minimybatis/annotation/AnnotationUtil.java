@@ -8,6 +8,11 @@ import java.lang.annotation.Annotation;
  */
 public class AnnotationUtil {
 
+    /**
+     * 获取指定类型注解的value值
+     * @param annotation
+     * @return
+     */
     public static String getAnnotationValue(Annotation annotation) {
         String value = null;
         if (annotation instanceof Select) {
