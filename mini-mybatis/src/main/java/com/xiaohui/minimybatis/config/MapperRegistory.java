@@ -18,43 +18,49 @@ import java.util.Map;
 public class MapperRegistory {
 
     /**
-     * 用于保存 方法名与sql映射关系
+     * 用于保存方法名与SQL等信息的映射关系
      */
     private final Map<String, MapperData> methodMaping = new HashMap<>();
 
     private String packageName;
 
-    private String realPackagePath;
+    private String filePath;
 
+    /**
+     * 扫描指定路径，给methodMaping赋值
+     *
+     * @param packageName
+     */
     public MapperRegistory(String packageName) {
         this.packageName = packageName;
         String bootstrapPath = Bootstrap.class.getResource("/").getPath();
 
         // 获取
-        realPackagePath = bootstrapPath + StringUtils.replaceAllChar(packageName, '.', '/');
+        filePath = bootstrapPath + StringUtils.replaceAllChar(packageName, '.', '/');
 
         init();
 
     }
 
     /**
-     * 初始化
+     * 扫描带@Table注解的
      */
-    private void init(){
-        File file = new File(realPackagePath);
+    private void init() {
+        File file = new File(filePath);
 
-        if (file.isDirectory()){
+        if (file.isDirectory()) {
             try {
-                for (File file1 : file.listFiles()){
+                for (File file1 : file.listFiles()) {
                     Class clazz = fileToClass(file1);
                     String tableName = AnnotationUtil.getAnnotationValue(clazz.getAnnotation(Table.class));
 
-                    String methodName = "";
-                    for (Method method : clazz.getMethods()){
+                    String methodName;
+                    for (Method method : clazz.getMethods()) {
                         Annotation[] methodAnnotations = method.getAnnotations();
-                        if (null != methodAnnotations){
+                        if (methodAnnotations != null && methodAnnotations.length > 0) {
                             methodName = clazz.getName() + "." + method.getName();
 
+                            // 获取mapper方法上的select、insert等注解
                             Annotation methodAnnotation = methodAnnotations[0];
                             String sql = AnnotationUtil.getAnnotationValue(methodAnnotation);
 
@@ -66,19 +72,17 @@ public class MapperRegistory {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("没有该目录！");
         }
 
     }
 
 
-
     /**
      * 将文件转换为class对象
+     *
      * @param file
-     * @return
-     * @throws ClassNotFoundException
      */
     private Class fileToClass(File file) throws ClassNotFoundException {
         String className = this.packageName + "." + file.getName().replace(".class", "");
@@ -87,18 +91,27 @@ public class MapperRegistory {
 
 
     /**
-     *  用于存储注解内容
+     * 用于存储注解内容
      */
     public Map<String, MapperData> getMethodMaping() {
         return methodMaping;
     }
 
-    public class MapperData{
+    public class MapperData {
 
+        /**
+         * SQL语句
+         */
         private String sql;
 
+        /**
+         * 返回值类型
+         */
         private Class type;
 
+        /**
+         * 表名
+         */
         private String tableName;
 
         public MapperData(String sql, Class type, String tableName) {

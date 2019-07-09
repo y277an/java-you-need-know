@@ -28,24 +28,37 @@ public class ResultSetHandler {
     public <E> E handle(PreparedStatement pstmt, MapperRegistory.MapperData mapperData) throws SQLException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Object obj = new DefaultObjectFactory().create(mapperData.getType());
 
+        /**
+         * 执行SQL，rs为返回结果
+         */
         ResultSet rs = pstmt.getResultSet();
         while (rs.next()) {
-            int i = 0;
             for (Field field : obj.getClass().getDeclaredFields()) {
-                setValue(obj, field, rs, i);
+                setValue(obj, field, rs);
             }
         }
 
         return (E) obj;
     }
 
-    private void setValue(Object obj, Field field, ResultSet rs, int i) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SQLException {
+    /**
+     * 利用反射获取到User的set方法，然后将User的每个字段进行赋值
+     * @param obj 本例中就是User
+     * @param field User的字段（id和name）
+     * @param rs SQL为返回结果
+     */
+    private void setValue(Object obj, Field field, ResultSet rs) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SQLException {
         Method method = obj.getClass().getMethod("set" + StringUtils.firstCharSwapHigh(field.getName()), field.getType());
         method.invoke(obj, getResult(field, rs));
     }
 
+
+    /**
+     * 根据User里的字段类型，进行不同的转换
+     * @param field User的字段（id和name）
+     * @param rs
+     */
     private Object getResult(Field field, ResultSet rs) throws SQLException {
-        //TODO type handles
         Class<?> type = field.getType();
         if (Integer.class == type) {
             return rs.getInt(field.getName());

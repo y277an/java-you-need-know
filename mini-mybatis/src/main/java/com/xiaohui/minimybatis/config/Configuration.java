@@ -18,6 +18,10 @@ public class Configuration {
 
     private String scanPackageName;
 
+    /**
+     * 扫描指定包路径
+     * @param scanPackageName
+     */
     public Configuration(String scanPackageName) {
         this.scanPackageName = scanPackageName;
         mapperRegistory = new MapperRegistory(scanPackageName);
