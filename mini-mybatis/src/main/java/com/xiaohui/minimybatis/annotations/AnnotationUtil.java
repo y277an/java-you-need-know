@@ -1,4 +1,4 @@
-package com.xiaohui.minimybatis.annotation;
+package com.xiaohui.minimybatis.annotations;
 
 import java.lang.annotation.Annotation;
 

@@ -1,8 +1,8 @@
-package com.xiaohui.minimybatis.statement;
+package com.xiaohui.minimybatis.executor.statement;
 
+import com.xiaohui.minimybatis.binding.MapperData;
 import com.xiaohui.minimybatis.config.Configuration;
-import com.xiaohui.minimybatis.config.MapperRegistory;
-import com.xiaohui.minimybatis.result.ResultSetHandler;
+import com.xiaohui.minimybatis.executor.resultset.ResultSetHandler;
 import lombok.Data;
 
 import java.sql.Connection;
@@ -27,7 +27,7 @@ public class StatementHandler {
     }
 
 
-    public <E> E query(MapperRegistory.MapperData mapperData, Object... parameter) throws Exception {
+    public <E> E query(MapperData mapperData, Object... parameter) throws Exception {
         try {
             //JDBC
             Connection conn = getConnection();

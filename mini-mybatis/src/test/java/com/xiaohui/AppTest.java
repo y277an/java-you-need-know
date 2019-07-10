@@ -2,7 +2,8 @@ package com.xiaohui;
 
 import static org.junit.Assert.assertTrue;
 
-import com.xiaohui.minimybatis.config.MapperRegistory;
+import com.xiaohui.minimybatis.binding.MapperData;
+import com.xiaohui.minimybatis.binding.MapperRegistry;
 import org.junit.Test;
 
 import java.util.Map;
@@ -17,9 +18,9 @@ public class AppTest
         String rootPath = this.getClass().getResource("/").getPath();
 
 
-        MapperRegistory registory = new MapperRegistory(rootPath+ "com/xiaohui/minimybatis/mapper");
-        Map<String, MapperRegistory.MapperData> map = registory.getMethodMaping();
-        for (Map.Entry<String, MapperRegistory.MapperData> entry : map.entrySet()){
+        MapperRegistry registory = new MapperRegistry(rootPath+ "com/xiaohui/minimybatis/mapper");
+        Map<String, MapperData> map = registory.getMethodMaping();
+        for (Map.Entry<String, MapperData> entry : map.entrySet()){
             System.out.println("methodName" + entry.getKey() + "|| sql:" + entry.getValue().getSql()+ "|| className:"
                     + entry.getValue().getType().getSimpleName());
         }

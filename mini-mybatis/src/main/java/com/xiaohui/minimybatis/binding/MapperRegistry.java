@@ -1,8 +1,8 @@
-package com.xiaohui.minimybatis.config;
+package com.xiaohui.minimybatis.binding;
 
 import com.xiaohui.minimybatis.Bootstrap;
-import com.xiaohui.minimybatis.annotation.AnnotationUtil;
-import com.xiaohui.minimybatis.annotation.Table;
+import com.xiaohui.minimybatis.annotations.AnnotationUtil;
+import com.xiaohui.minimybatis.annotations.Table;
 import com.xiaohui.minimybatis.utils.StringUtils;
 
 import java.io.File;
@@ -15,7 +15,7 @@ import java.util.Map;
  * @Author: xiaohui
  * @Description:
  */
-public class MapperRegistory {
+public class MapperRegistry {
 
     /**
      * 用于保存方法名与SQL等信息的映射关系
@@ -31,7 +31,7 @@ public class MapperRegistory {
      *
      * @param packageName
      */
-    public MapperRegistory(String packageName) {
+    public MapperRegistry(String packageName) {
         this.packageName = packageName;
         String bootstrapPath = Bootstrap.class.getResource("/").getPath();
 
@@ -97,51 +97,5 @@ public class MapperRegistory {
         return methodMaping;
     }
 
-    public class MapperData {
 
-        /**
-         * SQL语句
-         */
-        private String sql;
-
-        /**
-         * 返回值类型
-         */
-        private Class type;
-
-        /**
-         * 表名
-         */
-        private String tableName;
-
-        public MapperData(String sql, Class type, String tableName) {
-            this.sql = sql;
-            this.type = type;
-            this.tableName = tableName;
-        }
-
-        public String getSql() {
-            return sql;
-        }
-
-        public void setSql(String sql) {
-            this.sql = sql;
-        }
-
-        public Class getType() {
-            return type;
-        }
-
-        public void setType(Class type) {
-            this.type = type;
-        }
-
-        public String getTableName() {
-            return tableName;
-        }
-
-        public void setTableName(String tableName) {
-            this.tableName = tableName;
-        }
-    }
 }

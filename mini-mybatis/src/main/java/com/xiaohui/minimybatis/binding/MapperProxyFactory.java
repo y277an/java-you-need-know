@@ -1,4 +1,4 @@
-package com.xiaohui.minimybatis.proxy;
+package com.xiaohui.minimybatis.binding;
 
 /**
  * @Author: xiaohui

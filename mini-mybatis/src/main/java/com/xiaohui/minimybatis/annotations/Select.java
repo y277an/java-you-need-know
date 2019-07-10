@@ -1,15 +1,15 @@
-package com.xiaohui.minimybatis.annotation;
+package com.xiaohui.minimybatis.annotations;
 
 import java.lang.annotation.*;
 
 /**
  * @Author: xiaohui
- * @Description: sql的insert注解
+ * @Description: sql的select注解
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
-public @interface Insert {
+public @interface Select{
 
     String value();
 

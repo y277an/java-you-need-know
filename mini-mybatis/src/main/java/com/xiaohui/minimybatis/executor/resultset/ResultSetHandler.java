@@ -1,7 +1,7 @@
-package com.xiaohui.minimybatis.result;
+package com.xiaohui.minimybatis.executor.resultset;
 
+import com.xiaohui.minimybatis.binding.MapperData;
 import com.xiaohui.minimybatis.config.Configuration;
-import com.xiaohui.minimybatis.config.MapperRegistory;
 import com.xiaohui.minimybatis.utils.StringUtils;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 
@@ -25,7 +25,7 @@ public class ResultSetHandler {
     }
 
 
-    public <E> E handle(PreparedStatement pstmt, MapperRegistory.MapperData mapperData) throws SQLException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public <E> E handle(PreparedStatement pstmt, MapperData mapperData) throws SQLException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Object obj = new DefaultObjectFactory().create(mapperData.getType());
 
         /**

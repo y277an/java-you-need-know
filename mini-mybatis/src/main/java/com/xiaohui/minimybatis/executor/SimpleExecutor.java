@@ -1,8 +1,8 @@
 package com.xiaohui.minimybatis.executor;
 
 import com.xiaohui.minimybatis.config.Configuration;
-import com.xiaohui.minimybatis.config.MapperRegistory;
-import com.xiaohui.minimybatis.statement.StatementHandler;
+import com.xiaohui.minimybatis.executor.statement.*;
+import com.xiaohui.minimybatis.binding.*;
 import lombok.Data;
 
 /**
@@ -19,7 +19,7 @@ public class SimpleExecutor implements Executor {
     }
 
     @Override
-    public <T> T query(MapperRegistory.MapperData mapperData, Object... parameter) throws Exception {
+    public <T> T query(MapperData mapperData, Object... parameter) throws Exception {
         StatementHandler handler = new StatementHandler(configuration);
 
         return handler.query(mapperData, parameter);

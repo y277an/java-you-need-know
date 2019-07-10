@@ -1,6 +1,7 @@
 package com.xiaohui.minimybatis.executor;
 
-import com.xiaohui.minimybatis.config.MapperRegistory;
+
+import com.xiaohui.minimybatis.binding.MapperData;
 
 /**
  * @Author: xiaohui
@@ -8,6 +9,6 @@ import com.xiaohui.minimybatis.config.MapperRegistory;
  */
 public interface Executor {
 
-    <T> T query(MapperRegistory.MapperData mapperData, Object... parameter) throws Exception;
+    <T> T query(MapperData mapperData, Object... parameter) throws Exception;
 
 }
