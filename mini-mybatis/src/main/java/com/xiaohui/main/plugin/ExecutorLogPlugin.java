@@ -5,8 +5,7 @@ import com.xiaohui.minimybatis.plugin.Interceptor;
 import com.xiaohui.minimybatis.plugin.Intercepts;
 import com.xiaohui.minimybatis.plugin.Invocation;
 import com.xiaohui.minimybatis.plugin.Plugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.util.Properties;
 
@@ -21,17 +20,15 @@ import java.util.Properties;
  */
 @Intercepts({})
 public class ExecutorLogPlugin implements Interceptor {
-    private final Logger logger = LoggerFactory.getLogger(ExecutorLogPlugin.class);
-
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         MapperData mapperData = (MapperData)invocation.getArgs()[0];
         Object[] parameter = (Object[])invocation.getArgs()[1];
-        logger.info("ExecutorLogPlugin is in processing....");
-        logger.info("mapperData is :"+ mapperData);
+        System.out.println(("ExecutorLogPlugin is in processing...."));
+        System.out.println("mapperData is :"+ mapperData);
         for (int i=0;i<parameter.length;i++) {
-            logger.info("parameter "+ i +" is　:" + parameter[i]);
+            System.out.println("parameter "+ i +" is　:" + parameter[i]);
         }
         return invocation.proceed();
     }
