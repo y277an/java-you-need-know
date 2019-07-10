@@ -22,9 +22,9 @@ public class DefaultSqlSession implements SqlSession {
 
     private Executor executor;
 
-    public DefaultSqlSession(Configuration configuration, Executor executor) {
+    public DefaultSqlSession(Configuration configuration) {
         this.configuration = configuration;
-        this.executor = executor;
+        this.executor = this.configuration.newExecutor();
     }
 
     @Override

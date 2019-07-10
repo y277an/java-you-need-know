@@ -21,11 +21,12 @@ public class Bootstrap {
 //                    + entry.getValue().getType().getSimpleName());
 //        }
 
-        Configuration configuration = new Configuration("com.xiaohui.minimybatis.mapper");
-        DefaultSqlSession sqlSession = new DefaultSqlSession(configuration, new SimpleExecutor(configuration));
+        Configuration configuration = new Configuration("com.xiaohui.minimybatis.mapper","com.xiaohui.main.plugin.ExecutorLogPlugin");
+        DefaultSqlSession sqlSession = new DefaultSqlSession(configuration);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = mapper.selectByPrimiryKey(1);
         System.out.println(user);
+
     }
 
 }

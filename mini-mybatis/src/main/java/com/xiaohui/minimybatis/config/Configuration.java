@@ -1,7 +1,15 @@
 package com.xiaohui.minimybatis.config;
 
+import com.xiaohui.minimybatis.executor.Executor;
+import com.xiaohui.minimybatis.executor.SimpleExecutor;
+import com.xiaohui.minimybatis.plugin.Interceptor;
+import com.xiaohui.minimybatis.plugin.InterceptorChain;
 import lombok.Data;
 import com.xiaohui.minimybatis.binding.MapperRegistry;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @Author: xiaohui
@@ -16,16 +24,18 @@ public class Configuration {
     public static final String URL       = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     private MapperRegistry mapperRegistry;
-
+    private InterceptorChain interceptorChain = new InterceptorChain();
     private String scanPackageName;
+    private String pluginName;
 
     /**
      * 扫描指定包路径
      *
      * @param scanPackageName
      */
-    public Configuration(String scanPackageName) {
+    public Configuration(String scanPackageName,String pluginName) {
         this.scanPackageName = scanPackageName;
+        this.pluginName = pluginName;
         init();
     }
 
@@ -68,11 +78,34 @@ public class Configuration {
      * 解析加载plugin
      */
     private void initPluginChain() {
+        String pluginStr = pluginName;
+        String[] pluginArray = pluginStr.split(",");
+        for (String plugin:pluginArray){
+            Class clazz = null;
+            try {
+                clazz = this.getClass().getClassLoader().loadClass(plugin);
+                if(clazz!=null){
+                    Object o = clazz.newInstance();
+                    this.interceptorChain.addInterceptor((Interceptor)clazz.newInstance());
+                }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
      * 解析加载typeHandler
      */
     private void initTypeHandler() {
+    }
+
+    public Executor newExecutor(){
+        Executor executor = new SimpleExecutor(this);
+        return (Executor)this.interceptorChain.pluginAll(executor);
     }
 }

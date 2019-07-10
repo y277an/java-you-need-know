@@ -12,7 +12,7 @@ import java.util.List;
 public class InterceptorChain {
 
     //内部就是一个拦截器的List
-    private final List<Interceptor> interceptors = new ArrayList<Interceptor>();
+    private final List<Interceptor> interceptors = new ArrayList<>();
 
     public Object pluginAll(Object target) {
         //循环调用每个Interceptor.plugin方法
