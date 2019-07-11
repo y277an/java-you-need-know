@@ -7,6 +7,7 @@
 |-- Desktop  
     |-- netty-rpc 手写RPC框架
     |-- spring-ioc-mvc 手写SpringIoC和SpringMVC框架
+    |-- mini-mybatis 手写Mybatis框架
 ```
 
 对应CSDN博客地址：https://blog.csdn.net/y277an
