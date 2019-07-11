@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 /**
  * @Author: xiaohui
- * @Description:
+ * @Description:结果集处理器
  */
 public class ResultSetHandler {
 

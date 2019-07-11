@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 /**
  * @Author: xiaohui
- * @Description:
+ * @Description:语句处理器
  */
 @Data
 public class StatementHandler {
@@ -26,15 +26,17 @@ public class StatementHandler {
         resultSetHandler = new ResultSetHandler(configuration);
     }
 
-
+    /**
+     * 处理查询
+     */
     public <E> E query(MapperData mapperData, Object... parameter) throws Exception {
         try {
-            //JDBC
+            // JDBC
             Connection conn = getConnection();
             //TODO ParamenterHandler
             PreparedStatement pstmt = conn.prepareStatement(String.format(mapperData.getSql(), mapperData.getTableName(), parameter[0]));
             pstmt.execute();
-            //ResultSetHandler
+            // ResultSetHandler
             return (E) resultSetHandler.handle(pstmt, mapperData);
         } catch (SQLException e) {
             e.printStackTrace();

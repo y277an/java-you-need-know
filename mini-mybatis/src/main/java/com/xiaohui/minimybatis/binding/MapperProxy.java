@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 
 /**
  * @Author: xiaohui
- * @Description:
+ * @Description: mapper的动态代理类
  */
 @Data
 public class MapperProxy implements InvocationHandler, Serializable {
@@ -28,8 +28,8 @@ public class MapperProxy implements InvocationHandler, Serializable {
         String s = clazz.getName() + "." + method.getName();
         MapperData data = this.sqlSession.getConfiguration().getMapperRegistry().getMethodMaping()
                 .get(s);
-        if (null != data){
-            return this.sqlSession.selectOne(data,args);
+        if (null != data) {
+            return this.sqlSession.selectOne(data, args);
         }
 
         return method.invoke(proxy, args);

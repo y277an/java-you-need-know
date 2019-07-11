@@ -7,13 +7,10 @@ import com.xiaohui.minimybatis.plugin.InterceptorChain;
 import lombok.Data;
 import com.xiaohui.minimybatis.binding.MapperRegistry;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * @Author: xiaohui
- * @Description:
+ * @Description:配置，源码中有更多的配置
  */
 @Data
 public class Configuration {

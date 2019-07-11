@@ -7,7 +7,7 @@ import lombok.Data;
 
 /**
  * @Author: xiaohui
- * @Description:
+ * @Description:简单执行器
  */
 @Data
 public class SimpleExecutor implements Executor {

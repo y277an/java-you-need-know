@@ -1,9 +1,9 @@
-package com.xiaohui.minimybatis.mapper;
+package com.xiaohui.main.mapper;
 
 import com.xiaohui.minimybatis.annotations.Insert;
 import com.xiaohui.minimybatis.annotations.Select;
 import com.xiaohui.minimybatis.annotations.Table;
-import com.xiaohui.minimybatis.entity.User;
+import com.xiaohui.main.entity.*;
 
 import java.util.List;
 

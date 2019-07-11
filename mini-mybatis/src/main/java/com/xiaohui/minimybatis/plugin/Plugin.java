@@ -2,19 +2,13 @@ package com.xiaohui.minimybatis.plugin;
 
 
 import com.xiaohui.minimybatis.executor.Executor;
-import com.xiaohui.minimybatis.reflection.ExceptionUtil;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @Author: xiaohui
- * @Description:
+ * @Description: mybatis的插件模块
  */
 public class Plugin implements InvocationHandler {
 
@@ -26,6 +20,9 @@ public class Plugin implements InvocationHandler {
         this.interceptor = interceptor;
     }
 
+    /**
+     * 源码中是需要进行签名校验的，本工程为了简洁不作检验。
+     */
     public static Object wrap(Object target, Interceptor interceptor) {
         return Proxy.newProxyInstance(target.getClass().getClassLoader(),new Class[]{Executor.class},new Plugin(target,interceptor));
     }

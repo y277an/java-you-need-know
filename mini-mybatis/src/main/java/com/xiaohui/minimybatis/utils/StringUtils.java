@@ -2,7 +2,7 @@ package com.xiaohui.minimybatis.utils;
 
 /**
  * @Author: xiaohui
- * @Description:
+ * @Description: 做数据库字段和PO对象转化时的工具类
  */
 public class StringUtils {
 

@@ -3,9 +3,9 @@ package com.xiaohui.minimybatis.plugin;
 import java.util.Properties;
 
 /**
- * 拦截器
+ *
  * @Author: xiaohui
- * @Description:
+ * @Description:拦截器
  */
 public interface Interceptor {
 

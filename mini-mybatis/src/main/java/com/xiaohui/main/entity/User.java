@@ -1,4 +1,4 @@
-package com.xiaohui.minimybatis.entity;
+package com.xiaohui.main.entity;
 
 import lombok.Data;
 

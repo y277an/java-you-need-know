@@ -2,8 +2,7 @@ package com.xiaohui.minimybatis.binding;
 
 /**
  * @Author: xiaohui
- * @Description:
- * @Date: 2019/7/10 21:56
+ * @Description: 保存mapper的数据
  */
 public class MapperData {
 

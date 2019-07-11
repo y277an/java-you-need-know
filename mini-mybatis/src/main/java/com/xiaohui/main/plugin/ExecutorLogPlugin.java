@@ -5,18 +5,11 @@ import com.xiaohui.minimybatis.plugin.Interceptor;
 import com.xiaohui.minimybatis.plugin.Intercepts;
 import com.xiaohui.minimybatis.plugin.Invocation;
 import com.xiaohui.minimybatis.plugin.Plugin;
-
-
 import java.util.Properties;
 
 /**
- * <p>执行日志输出插件</p>
- *
- * @author grand 2018/6/21
- * @version V1.0
- * @modificationHistory=========================逻辑或功能性重大变更记录
- * @modify by user: {修改人}
- * @modify by reason:{方法名}:{原因}
+ * @Author: xiaohui
+ * @Description: 执行SQL前日志输出的插件
  */
 @Intercepts({})
 public class ExecutorLogPlugin implements Interceptor {

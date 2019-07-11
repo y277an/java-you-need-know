@@ -4,7 +4,7 @@ import java.lang.annotation.Annotation;
 
 /**
  * @Author: xiaohui
- * @Description:
+ * @Description: 注解有关的工具类
  */
 public class AnnotationUtil {
 

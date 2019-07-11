@@ -1,10 +1,9 @@
 package com.xiaohui.minimybatis.binding;
 
-import com.xiaohui.minimybatis.Bootstrap;
+import com.xiaohui.main.Bootstrap;
 import com.xiaohui.minimybatis.annotations.AnnotationUtil;
 import com.xiaohui.minimybatis.annotations.Table;
 import com.xiaohui.minimybatis.utils.StringUtils;
-
 import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -13,7 +12,7 @@ import java.util.Map;
 
 /**
  * @Author: xiaohui
- * @Description:
+ * @Description: mapper的注册中心
  */
 public class MapperRegistry {
 
