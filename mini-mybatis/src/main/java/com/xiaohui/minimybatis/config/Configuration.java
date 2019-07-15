@@ -10,7 +10,7 @@ import com.xiaohui.minimybatis.binding.MapperRegistry;
 
 /**
  * @Author: xiaohui
- * @Description:配置，源码中有更多的配置
+ * @Description:配置文件。源码中有更多的配置
  */
 @Data
 public class Configuration {
