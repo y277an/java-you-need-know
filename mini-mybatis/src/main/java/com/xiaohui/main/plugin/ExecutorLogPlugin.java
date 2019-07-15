@@ -1,6 +1,6 @@
 package com.xiaohui.main.plugin;
 
-import com.xiaohui.minimybatis.binding.MapperData;
+import com.xiaohui.minimybatis.binding.MappedStatement;
 import com.xiaohui.minimybatis.plugin.Interceptor;
 import com.xiaohui.minimybatis.plugin.Intercepts;
 import com.xiaohui.minimybatis.plugin.Invocation;
@@ -16,10 +16,10 @@ public class ExecutorLogPlugin implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        MapperData mapperData = (MapperData)invocation.getArgs()[0];
+        MappedStatement mapperStatement = (MappedStatement)invocation.getArgs()[0];
         Object[] parameter = (Object[])invocation.getArgs()[1];
         System.out.println(("ExecutorLogPlugin is in processing...."));
-        System.out.println("mapperData is :"+ mapperData);
+        System.out.println("mapperStatement is :"+ mapperStatement);
         for (int i=0;i<parameter.length;i++) {
             System.out.println("parameter "+ i +" is　:" + parameter[i]);
         }

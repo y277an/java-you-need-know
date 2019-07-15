@@ -1,6 +1,6 @@
 package com.xiaohui.minimybatis.session.defaults;
 
-import com.xiaohui.minimybatis.binding.MapperData;
+import com.xiaohui.minimybatis.binding.MappedStatement;
 import com.xiaohui.minimybatis.binding.MapperProxy;
 import com.xiaohui.minimybatis.config.Configuration;
 import com.xiaohui.minimybatis.executor.Executor;
@@ -33,14 +33,14 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public <T> T selectOne(MapperData mapperData, Object... parameter) throws Exception {
+    public <T> T selectOne(MappedStatement mapperStatement, Object... parameter) throws Exception {
 
-        return executor.query(mapperData, parameter);
+        return executor.query(mapperStatement, parameter);
     }
 
     @Override
-    public <E> List<E> selectList(MapperData mapperData, Object... parameter) throws Exception {
-        return executor.query(mapperData, parameter);
+    public <E> List<E> selectList(MappedStatement mapperStatement, Object... parameter) throws Exception {
+        return executor.query(mapperStatement, parameter);
     }
 
     @Override

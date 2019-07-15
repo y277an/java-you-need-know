@@ -4,7 +4,7 @@ package com.xiaohui.minimybatis.binding;
  * @Author: xiaohui
  * @Description: 保存mapper的数据
  */
-public class MapperData {
+public class MappedStatement {
 
     /**
      * SQL语句
@@ -21,7 +21,7 @@ public class MapperData {
      */
     private String tableName;
 
-    public MapperData(String sql, Class type, String tableName) {
+    public MappedStatement(String sql, Class type, String tableName) {
         this.sql = sql;
         this.type = type;
         this.tableName = tableName;

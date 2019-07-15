@@ -1,6 +1,6 @@
 package com.xiaohui.minimybatis.executor.statement;
 
-import com.xiaohui.minimybatis.binding.MapperData;
+import com.xiaohui.minimybatis.binding.MappedStatement;
 import com.xiaohui.minimybatis.config.Configuration;
 import com.xiaohui.minimybatis.executor.resultset.ResultSetHandler;
 import lombok.Data;
@@ -29,15 +29,15 @@ public class StatementHandler {
     /**
      * 处理查询
      */
-    public <E> E query(MapperData mapperData, Object... parameter) throws Exception {
+    public <E> E query(MappedStatement mapperStatement, Object... parameter) throws Exception {
         try {
             // JDBC
             Connection conn = getConnection();
             //TODO ParamenterHandler
-            PreparedStatement pstmt = conn.prepareStatement(String.format(mapperData.getSql(), mapperData.getTableName(), parameter[0]));
+            PreparedStatement pstmt = conn.prepareStatement(String.format(mapperStatement.getSql(), mapperStatement.getTableName(), parameter[0]));
             pstmt.execute();
             // ResultSetHandler
-            return (E) resultSetHandler.handle(pstmt, mapperData);
+            return (E) resultSetHandler.handle(pstmt, mapperStatement);
         } catch (SQLException e) {
             e.printStackTrace();
         }

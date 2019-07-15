@@ -26,7 +26,7 @@ public class MapperProxy implements InvocationHandler, Serializable {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         String s = clazz.getName() + "." + method.getName();
-        MapperData data = this.sqlSession.getConfiguration().getMapperRegistry().getMethodMaping()
+        MappedStatement data = this.sqlSession.getConfiguration().getMapperRegistry().getMethodMaping()
                 .get(s);
         if (null != data) {
             return this.sqlSession.selectOne(data, args);

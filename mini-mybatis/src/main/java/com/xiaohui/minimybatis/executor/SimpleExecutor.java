@@ -19,9 +19,9 @@ public class SimpleExecutor implements Executor {
     }
 
     @Override
-    public <T> T query(MapperData mapperData, Object... parameter) throws Exception {
+    public <T> T query(MappedStatement mapperStatement, Object... parameter) throws Exception {
         StatementHandler handler = new StatementHandler(configuration);
 
-        return handler.query(mapperData, parameter);
+        return handler.query(mapperStatement, parameter);
     }
 }

@@ -19,7 +19,7 @@ public class MapperRegistry {
     /**
      * 用于保存方法名与SQL等信息的映射关系
      */
-    private final Map<String, MapperData> methodMaping = new HashMap<>();
+    private final Map<String, MappedStatement> methodMaping = new HashMap<>();
 
     private String packageName;
 
@@ -63,7 +63,7 @@ public class MapperRegistry {
                             Annotation methodAnnotation = methodAnnotations[0];
                             String sql = AnnotationUtil.getAnnotationValue(methodAnnotation);
 
-                            methodMaping.put(methodName, new MapperData(sql, method.getReturnType(), tableName));
+                            methodMaping.put(methodName, new MappedStatement(sql, method.getReturnType(), tableName));
                         }
                     }
                 }
@@ -92,7 +92,7 @@ public class MapperRegistry {
     /**
      * 用于存储注解内容
      */
-    public Map<String, MapperData> getMethodMaping() {
+    public Map<String, MappedStatement> getMethodMaping() {
         return methodMaping;
     }
 
