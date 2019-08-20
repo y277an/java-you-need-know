@@ -1,9 +1,9 @@
 package com.xiaohui.demo;
 
-import com.xiaohui.ioc.annotation.Autowired;
-import com.xiaohui.ioc.annotation.Controller;
-import com.xiaohui.ioc.annotation.RequestMapping;
-import com.xiaohui.ioc.annotation.RequestParam;
+import com.xiaohui.ioc.beans.factory.annotation.Autowired;
+import com.xiaohui.ioc.beans.factory.annotation.Controller;
+import com.xiaohui.ioc.beans.factory.annotation.RequestMapping;
+import com.xiaohui.ioc.beans.factory.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

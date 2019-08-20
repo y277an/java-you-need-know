@@ -4,7 +4,7 @@ package com.xiaohui.mvc;
 import java.lang.reflect.Method;
 import java.util.regex.Pattern;
 
-public class Handler {
+public class HandlerMapping {
 
     // 调用对应的具体controller对象
     private Object  controller;
@@ -13,7 +13,7 @@ public class Handler {
     // 对应RequestMapping的url正则
     private Pattern pattern;
 
-    public Handler(Object controller, Method method, Pattern pattern) {
+    public HandlerMapping(Object controller, Method method, Pattern pattern) {
         this.controller = controller;
         this.method = method;
         this.pattern = pattern;
@@ -41,5 +41,15 @@ public class Handler {
 
     public void setPattern(Pattern pattern) {
         this.pattern = pattern;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }

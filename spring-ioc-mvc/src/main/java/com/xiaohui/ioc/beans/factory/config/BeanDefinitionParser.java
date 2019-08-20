@@ -1,7 +1,7 @@
-package com.xiaohui.ioc.support;
+package com.xiaohui.ioc.beans.factory.config;
 
 
-import com.xiaohui.ioc.BeanRegister;
+import com.xiaohui.ioc.beans.factory.BeanRegister;
 
 import java.io.File;
 import java.net.URL;

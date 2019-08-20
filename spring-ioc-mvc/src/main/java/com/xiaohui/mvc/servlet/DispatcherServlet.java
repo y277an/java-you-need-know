@@ -1,11 +1,11 @@
 package com.xiaohui.mvc.servlet;
 
 
-import com.xiaohui.ioc.annotation.Controller;
-import com.xiaohui.ioc.annotation.RequestMapping;
-import com.xiaohui.ioc.annotation.RequestParam;
+import com.xiaohui.ioc.beans.factory.annotation.Controller;
+import com.xiaohui.ioc.beans.factory.annotation.RequestMapping;
+import com.xiaohui.ioc.beans.factory.annotation.RequestParam;
 import com.xiaohui.ioc.support.AnnotationBeanFactory;
-import com.xiaohui.mvc.Handler;
+import com.xiaohui.mvc.HandlerMapping;
 import com.xiaohui.mvc.HandlerAdapter;
 
 import javax.servlet.ServletException;
@@ -22,8 +22,8 @@ import java.util.regex.Pattern;
 public class DispatcherServlet extends HttpServlet {
 
     private static final String                       CONTEXT_CONFIG_LOCATION = "globalConfig";
-    private             List<Handler>                handlerMapping          = new ArrayList<>();
-    private             Map<Handler, HandlerAdapter> adapterMapping          = new ConcurrentHashMap<>();
+    private             List<HandlerMapping> handlerMapping = new ArrayList<>();
+    private             Map<HandlerMapping, HandlerAdapter> adapterMapping          = new ConcurrentHashMap<>();
 
     @Override
     public void init() throws ServletException {
@@ -69,8 +69,8 @@ public class DispatcherServlet extends HttpServlet {
     private void initHandlerAdapters(AnnotationBeanFactory context) {
         if (handlerMapping.isEmpty()) return;
         // 遍历所有的handlerMapping
-        for (Handler handler : handlerMapping) {
-            Method method = handler.getMethod();
+        for (HandlerMapping handlerMapping : handlerMapping) {
+            Method method = handlerMapping.getMethod();
             // 创建一个保存RequestParam 注解的value(即参数名)==>index(参数位置索引)
             Map<String, Integer> paramType = new HashMap<String, Integer>();
             // 获取所有的参数类型数组
@@ -101,7 +101,7 @@ public class DispatcherServlet extends HttpServlet {
                     }
                 }
             }
-            adapterMapping.put(handler, new HandlerAdapter(paramType));
+            adapterMapping.put(handlerMapping, new HandlerAdapter(paramType));
         }
 
     }
@@ -133,7 +133,7 @@ public class DispatcherServlet extends HttpServlet {
                 String regex = (url + subUrl).replaceAll("/+", "/");
                 Pattern pattern = Pattern.compile(regex);
                 // 添加到handlerMapping中去
-                handlerMapping.add(new Handler(entry.getValue(), method, pattern));
+                handlerMapping.add(new HandlerMapping(entry.getValue(), method, pattern));
             }
 
         }
@@ -166,13 +166,13 @@ public class DispatcherServlet extends HttpServlet {
 
     private void doDispatch(HttpServletRequest req, HttpServletResponse resp) {
         // 取出匹配的handler，如果没有则跳过
-        Optional.ofNullable(getHandler(req)).ifPresent(handler -> {
+        Optional.ofNullable(getHandler(req)).ifPresent(handlerMapping -> {
             // 根据handler取出HandlerAdapter
-            HandlerAdapter ha = getHandlerAdapter(handler);
+            HandlerAdapter ha = getHandlerAdapter(handlerMapping);
 
             // 调用handle方法处理请求,暂时未做ModalAndView处理
             try {
-                ha.handle(req, resp, handler);
+                ha.handle(req, resp, handlerMapping);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -180,21 +180,21 @@ public class DispatcherServlet extends HttpServlet {
 
     }
 
-    private HandlerAdapter getHandlerAdapter(Handler handler) {
+    private HandlerAdapter getHandlerAdapter(HandlerMapping handlerMapping) {
         if (adapterMapping.isEmpty()) return null;
-        return adapterMapping.get(handler);
+        return adapterMapping.get(handlerMapping);
     }
 
-    private Handler getHandler(HttpServletRequest req) {
+    private HandlerMapping getHandler(HttpServletRequest req) {
         if (handlerMapping.isEmpty()) return null;
         String contextPath = req.getContextPath();
         String url = req.getRequestURI();
         // 获取请求的url  除去contextPath剩余的
         url = url.replace(contextPath, "").replaceAll("/+", "/");
-        for (Handler handler : handlerMapping) {
-            if (handler.getPattern().matcher(url).matches()) {
+        for (HandlerMapping handlerMapping : handlerMapping) {
+            if (handlerMapping.getPattern().matcher(url).matches()) {
                 // 匹配到就把handler返回
-                return handler;
+                return handlerMapping;
             }
         }
         return null;

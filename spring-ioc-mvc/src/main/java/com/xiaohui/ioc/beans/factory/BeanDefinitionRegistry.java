@@ -1,8 +1,8 @@
-package com.xiaohui.ioc;
+package com.xiaohui.ioc.beans.factory;
 
 import java.util.Map;
 
-public interface BeanFactory {
+public interface BeanDefinitionRegistry {
     /**
      * 根据id获取bean
      *

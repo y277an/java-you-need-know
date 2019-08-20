@@ -1,6 +1,6 @@
 package com.xiaohui.demo;
 
-import com.xiaohui.ioc.annotation.Component;
+import com.xiaohui.ioc.beans.factory.annotation.Component;
 
 @Component(value = "testService")
 public class TestService {

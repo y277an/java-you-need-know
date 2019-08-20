@@ -1,6 +1,7 @@
 package com.xiaohui.ioc.support;
 
-import com.xiaohui.ioc.BeanRegister;
+import com.xiaohui.ioc.beans.factory.BeanRegister;
+import com.xiaohui.ioc.beans.factory.config.BeanDefinition;
 
 import java.util.List;
 

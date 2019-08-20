@@ -20,12 +20,12 @@ public class HandlerAdapter {
      *
      * @param req
      * @param resp
-     * @param handler 和url匹配的handler
+     * @param handlerMapping 和url匹配的handler
      * @throws Exception
      */
-    public void handle(HttpServletRequest req, HttpServletResponse resp, Handler handler) throws Exception {
+    public void handle(HttpServletRequest req, HttpServletResponse resp, HandlerMapping handlerMapping) throws Exception {
         // 获取要调用方法的全部参数类型
-        Class<?>[] parameterTypes = handler.getMethod().getParameterTypes();
+        Class<?>[] parameterTypes = handlerMapping.getMethod().getParameterTypes();
         // 创建一个反射调用需要的参数值得数组,数组长度和参数长度一样
         Object[] paramValues = new Object[parameterTypes.length];
         /**
@@ -57,7 +57,7 @@ public class HandlerAdapter {
             }
         }
         // 最后反射调用Controller的method方法
-        handler.getMethod().invoke(handler.getController(), paramValues);
+        handlerMapping.getMethod().invoke(handlerMapping.getController(), paramValues);
     }
 
     private Object castValueType(String value, Class<?> clazz) {

@@ -1,4 +1,4 @@
-package com.xiaohui.ioc.annotation;
+package com.xiaohui.ioc.beans.factory.annotation;
 
 import java.lang.annotation.*;
 

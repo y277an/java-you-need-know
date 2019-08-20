@@ -1,6 +1,6 @@
 package com.xiaohui.ioc.support;
 
-import com.xiaohui.ioc.annotation.Autowired;
+import com.xiaohui.ioc.beans.factory.annotation.Autowired;
 import org.apache.commons.lang.StringUtils;
 
 import java.lang.reflect.Field;

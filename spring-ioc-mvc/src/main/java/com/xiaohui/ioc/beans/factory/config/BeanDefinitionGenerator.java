@@ -1,7 +1,7 @@
-package com.xiaohui.ioc.support;
+package com.xiaohui.ioc.beans.factory.config;
 
-import com.xiaohui.ioc.annotation.Component;
-import com.xiaohui.ioc.annotation.Controller;
+import com.xiaohui.ioc.beans.factory.annotation.Component;
+import com.xiaohui.ioc.beans.factory.annotation.Controller;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;

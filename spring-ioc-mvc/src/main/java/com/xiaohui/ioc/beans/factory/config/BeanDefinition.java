@@ -1,4 +1,4 @@
-package com.xiaohui.ioc.support;
+package com.xiaohui.ioc.beans.factory.config;
 
 /**
  * Bean的元数据类

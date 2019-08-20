@@ -1,7 +1,9 @@
 package com.xiaohui.ioc.support;
 
-import com.xiaohui.ioc.BeanFactory;
-import com.xiaohui.ioc.BeanRegister;
+import com.xiaohui.ioc.beans.factory.BeanDefinitionRegistry;
+import com.xiaohui.ioc.beans.factory.BeanRegister;
+import com.xiaohui.ioc.beans.factory.config.BeanDefinition;
+import com.xiaohui.ioc.beans.factory.config.BeanDefinitionParser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +13,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class AnnotationBeanFactory implements BeanFactory, BeanRegister {
+public class AnnotationBeanFactory implements BeanDefinitionRegistry, BeanRegister {
     private Map<String, Object> instanceMapping = new ConcurrentHashMap<>();
 
     // 保存所有bean的信息,主要包含bean的类型  id等信息（初始化时，遍历该list，实例化所有bean）
