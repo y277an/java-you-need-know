@@ -1,7 +1,7 @@
 package com.xiaohui.ioc.beans.aware;
 
 /**
- * Aware接口 用于注入一些需要用到的对象
+ * 让bean获取spring容器的服务
  */
 public interface Aware {
 }

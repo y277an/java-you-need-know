@@ -1,6 +1,7 @@
 package com.xiaohui.ioc.support;
 
 import com.xiaohui.ioc.beans.factory.BeanDefinitionRegistry;
+import com.xiaohui.ioc.beans.factory.BeanFactory;
 import com.xiaohui.ioc.beans.factory.BeanRegister;
 import com.xiaohui.ioc.beans.factory.config.BeanDefinition;
 import com.xiaohui.ioc.beans.factory.config.BeanDefinitionParser;
@@ -13,13 +14,13 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class AnnotationBeanFactory implements BeanDefinitionRegistry, BeanRegister {
+public class AnnotationBeanFactory implements BeanFactory, BeanDefinitionRegistry, BeanRegister {
     private Map<String, Object> instanceMapping = new ConcurrentHashMap<>();
 
     // 保存所有bean的信息,主要包含bean的类型  id等信息（初始化时，遍历该list，实例化所有bean）
     private List<BeanDefinition> beanDefinitions = new ArrayList<>();
     // 配置文件我们使用properties文件，相比使用xml节省了很多解析xml的代码
-    private Properties           config          = new Properties();
+    private Properties config = new Properties();
 
     public AnnotationBeanFactory(String location) {
         InputStream is = null;
@@ -75,6 +76,7 @@ public class AnnotationBeanFactory implements BeanDefinitionRegistry, BeanRegist
         parser.parse(config);
     }
 
+    @Override
     public Object getBean(String id) {
         return instanceMapping.get(id);
     }
@@ -83,18 +85,17 @@ public class AnnotationBeanFactory implements BeanDefinitionRegistry, BeanRegist
         return this.config;
     }
 
-    public <T> T getBean(String id, Class<T> clazz) {
-        return (T) instanceMapping.get(id);
-    }
-
+    @Override
     public Map<String, Object> getBeans() {
         return instanceMapping;
     }
 
+    @Override
     public void registBeanDefinition(List<BeanDefinition> bds) {
         beanDefinitions.addAll(bds);
     }
 
+    @Override
     public void registInstanceMapping(String id, Object instance) {
         instanceMapping.put(id, instance);
     }

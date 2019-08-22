@@ -1,11 +1,11 @@
 package com.xiaohui.ioc.beans.aware;
 
-import context.app.ApplicationContext;
+
+import com.xiaohui.ioc.context.ApplicationContext;
 
 /**
- * @author ly
- * @create 2019-01-12 16:06
- **/
+ * 实现该接口的类可以直接获取spring配置文件中的bean对象。
+ */
 public interface ApplicationContextAware {
     void setApplicationContext(ApplicationContext applicationContext);
 }
