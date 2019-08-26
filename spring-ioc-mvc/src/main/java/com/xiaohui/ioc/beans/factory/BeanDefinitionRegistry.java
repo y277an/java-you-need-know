@@ -1,5 +1,7 @@
 package com.xiaohui.ioc.beans.factory;
 
+import com.xiaohui.ioc.beans.factory.config.BeanDefinition;
+
 import java.util.Map;
 
 public interface BeanDefinitionRegistry {
@@ -10,4 +12,10 @@ public interface BeanDefinitionRegistry {
      * @return
      */
     Map<String, Object> getBeans();
+    /**
+     * 注册bean定义到bean工厂
+     * @param beanName
+     * @param beanName
+     */
+    void register(String beanName, BeanDefinition beanDefinition);
 }

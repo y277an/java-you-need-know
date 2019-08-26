@@ -76,9 +76,21 @@ public class AnnotationBeanFactory implements BeanFactory, BeanDefinitionRegistr
         parser.parse(config);
     }
 
+    /**
+     * 注册单个bean信息
+     */
     @Override
-    public Object getBean(String id) {
-        return instanceMapping.get(id);
+    public void register(String beanName, BeanDefinition beanDefinition) {
+        if (instanceMapping.containsKey(beanName)) {
+            System.out.println("[" + beanName + "]已经存在");
+            return;
+        }
+        instanceMapping.put(beanName, beanDefinition);
+    }
+
+    @Override
+    public Object getBean(String beanName) {
+        return instanceMapping.get(beanName);
     }
 
     public Properties getConfig() {
@@ -99,5 +111,6 @@ public class AnnotationBeanFactory implements BeanFactory, BeanDefinitionRegistr
     public void registInstanceMapping(String id, Object instance) {
         instanceMapping.put(id, instance);
     }
+
 
 }
