@@ -1,39 +1,86 @@
 package com.xiaohui.ioc.beans.factory.config;
 
+import org.apache.commons.lang.StringUtils;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Bean的元数据类
  */
-public class BeanDefinition {
-    private String id;
-    private Class  clazz;
+public interface BeanDefinition {
 
-    public BeanDefinition(String id, Class clazz) {
-        this.id = id;
-        this.clazz = clazz;
-    }
+    String SINGLETION = "singleton";
 
-    public String getId() {
-        return id;
-    }
+    String PROTOTYPE = "prototype";
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    /**
+     * 获取bean的字节码对象
+     * @return
+     */
+    Class<?> getBeanClass();
 
-    public Class getClazz() {
-        return clazz;
-    }
+    String getBeanName();
 
-    public void setClazz(Class clazz) {
-        this.clazz = clazz;
-    }
+    /**
+     * 获取创建bean的工厂名
+     * @return
+     */
+    String getBeanFactory();
 
-    public Object getInstance() {
-        try {
-            return clazz.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
+    /**
+     * 获取创建bean的实例方法
+     * @return
+     */
+    String getCreateBeanMethod();
+
+    String getStaticCreateBeanMethod();
+
+    String getBeanInitMethodName();
+
+    String getBeanDestoryMethodName();
+
+    /**
+     * 获取bean的类型
+     * @return
+     */
+    String getScope();
+
+    boolean isSingleton();
+
+    boolean isPrototype();
+
+    /**
+     * 校验传入的bean定义是否正确
+     * @return
+     */
+    default boolean validate(){
+
+        if(getBeanClass() == null){
+            //字节码文件为空 并且创建bean的工厂为空 不合法
+            if(StringUtils.isBlank(getBeanFactory()) && StringUtils.isBlank(getCreateBeanMethod())){
+                return false;
+            }
         }
-        return null;
+        return true;
     }
+
+    /**
+     * 传入的构造参数
+     * @return
+     */
+    List<?> getConstructorArg();
+
+    //下面的方法时为了缓存相应的调用方法
+    Constructor<?> getConstructor();
+    void setConstructor(Constructor<?> constructor);
+    Method getFactoryMethod();
+    void setFactoryMethod(Method factoryMethod);
+
+    //属性依赖
+    Map<String,Object> getPropertyKeyValue();
+    void setPropertyKeyValue(Map<String,Object> properties);
+
 }

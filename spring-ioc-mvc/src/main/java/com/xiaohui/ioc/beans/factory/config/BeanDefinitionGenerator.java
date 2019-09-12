@@ -22,7 +22,8 @@ public class BeanDefinitionGenerator {
             if (ids == null) return null;
             List<BeanDefinition> list = new ArrayList<>();
             for (String id : ids) {
-                list.add(new BeanDefinition(id, clazz));
+                // 省略判断是否是多例，直接认为所有clazz都是要求单例的
+                list.add(new DefaultBeanDefinition(id, clazz));
             }
             return list;
         } catch (ClassNotFoundException e) {
