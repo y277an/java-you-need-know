@@ -10,6 +10,10 @@
     |-- mini-mybatis 手写Mybatis框架
 ```
 
+自我批评：
+1. 工程中为了省去日志依赖的配置，所以所有输出都用了控制台输出。
+2. 由于在公司和在家多台终端多个版本的IDE，所以文件头等代码注释没有做到风格统一。
+
 对应CSDN博客地址：https://blog.csdn.net/y277an
 
 对应简书博客地址：https://www.jianshu.com/u/42ef5cca0437
