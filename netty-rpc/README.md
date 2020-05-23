@@ -1,4 +1,4 @@
-这个工程里是使用netty、zookeeper、fastjson仿写RPC框架。
+这个工程里是使用netty、zookeeper、fastjson仿写RPC框架。对应的博客地址：https://blog.csdn.net/y277an/article/details/90745393
 
 > 由于是为了讲解过程，所以注释非常多，方便学习者理解，并不会像生产代码那样追求简洁，所以大神请飘过。
 
