@@ -1,4 +1,4 @@
-这个工程里是仿写spring框架中ioc和mvc的原理代码。
+这个工程里是仿写spring框架中ioc和mvc的原理代码。对应博客的地址：https://blog.csdn.net/y277an/article/details/90145318
 
 启动项目只需要JDK8+的安装和手动配置tomcat，可以[点击查看手把手的环境配置博客说明](https://blog.csdn.net/y277an/article/details/100012643)
 
