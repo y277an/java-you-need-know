@@ -1,4 +1,4 @@
-这个工程里是仿写mybatis框架的原理代码。
+这个工程里是仿写mybatis框架的原理代码。对应的博客地址：https://blog.csdn.net/y277an/article/details/96235858
 
 查看main.Bootstrap文件上说明，然后运行该文件，断点调试即可。
 
